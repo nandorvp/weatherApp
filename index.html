@@ -10,6 +10,12 @@
 <body>
 	<header>
 		<h1>The Weather App</h1>
+		<div id="switch" onclick="darkLight()">
+			<button>
+			</button>
+			<span>
+			</span>
+		</div>
 	</header>
 	<main>
 		<div class="card">
@@ -102,6 +108,24 @@
 			}
 		}));
 
+		function darkLight() {
+    const getHtml = document.documentElement
+    
+    getHtml.classList.toggle("dark")
+
+    const getBackground = document.querySelector(".card")
+    
+console.log("clicked");
+   /* if(getHtml.classList.contains("light")){
+        getImg.setAttribute('src','./assets/fm-light.png')
+        getImg.setAttribute('alt','Light Picture of Fernando Monteiro')
+        
+    } else {
+        getImg.setAttribute('src','./assets/fm-dark.png')
+        getImg.setAttribute('alt','Dark Picture of Fernando Monteiro')
+      
+    }*/
+}
 	</script>
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
