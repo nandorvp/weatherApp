@@ -8,37 +8,51 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="card">
-		<div class="search">
-			<input type="text" placeholder="Enter city name" spellcheck="false">
-			<button class="myBtn"><ion-icon id= search-icon name="search-outline"></ion-icon></button>
-		</div>
-		<div class="error">
-			<p>Invalid City Name</p>
-		</div>
-		<div class="weather">
-			<img src="assets/images/rain.png" alt="Weather icon" class="weather-icon">
-			<h1 class="temperature">22°C</h1>
-			<h2 class="city">Porto</h2>
-			<div class="weather-details">
-				<div class="col">
-					<img src="assets/images/humidity.png" alt="Humidity icon">
-					<div>
-						<p class="humidity">50%</p>
-						<p>Humidity</p>
+	<header>
+		<h1>The Weather App</h1>
+	</header>
+	<main>
+		<div class="card">
+			<div class="search">
+				<input type="text" placeholder="Enter city name" spellcheck="false">
+				<button class="myBtn"><ion-icon id= search-icon name="search-outline"></ion-icon></button>
+			</div>
+			<div class="error">
+				<p>Invalid City Name</p>
+			</div>
+			<div class="weather">
+				<img src="assets/images/rain.png" alt="Weather icon" class="weather-icon">
+				<h1 class="temperature">22°C</h1>
+				<h2 class="city">Porto</h2>
+				<div class="weather-details">
+					<div class="col">
+						<img src="assets/images/humidity.png" alt="Humidity icon">
+						<div>
+							<p class="humidity">50%</p>
+							<p>Humidity</p>
+						</div>
 					</div>
-				</div>
-				<div class="col">
-					<img src="assets/images/wind.png" alt="Wind icon">
-					<div>
-						<p class="wind">15 km/h</p>
-						<p>Wind Speed</p>
+					<div class="col">
+						<img src="assets/images/wind.png" alt="Wind icon">
+						<div>
+							<p class="wind">15 km/h</p>
+							<p>Wind Speed</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</main>
+	<footer>
+		<p id="footer"></p>
+	</footer>
 	<script>
+	let dateNow = new Date()
+	let anoAtual = dateNow.getFullYear()
+	const footer = document.getElementById("footer")
+
+	footer.innerHTML = `Made by <a href="#"> Fernando Monteiro</a> &copy; ${anoAtual}`
+
 		const apiKey = "329fd450cf5597ba07f4486d6183c5a9";
 		const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 		const searchCity = document.querySelector(".search input");
@@ -48,7 +62,7 @@
 		async function checkWeather(city) {
 			const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-			if(response.status == 400) {
+			if(response.status == 404 || response.status == 400 ) {
 				document.querySelector(".error").style.display = "block";
 				document.querySelector(".weather").style.display = "none";
 			}else {
@@ -88,7 +102,6 @@
 			}
 		}));
 
-	//	checkWeather();
 	</script>
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
